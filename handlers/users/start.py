@@ -2,7 +2,7 @@ from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
 from utils.misc.subscription import check
 from keyboards.inline.subscribtion_inline import check_sub
-from data.config import CHANNEL
+from data.config import CHANNELS
 from filters import PrivateFilter
 from loader import dp, bot
 
@@ -10,7 +10,7 @@ from loader import dp, bot
 @dp.message_handler(PrivateFilter(), CommandStart())
 async def bot_start(message: types.Message):
     channel_format = str()
-    for channel in CHANNEL:
+    for channel in CHANNELS:
         chat = await bot.get_chat(channel)
         invite_link = await chat.export_invite_link()
         channel_format += f"<a href='{invite_link}'> {chat.title}</a>\n"
@@ -24,7 +24,7 @@ async def bot_start(message: types.Message):
 async def check_subscription(call: types.CallbackQuery):
     await call.answer()
     result = str()
-    for channel in CHANNEL:
+    for channel in CHANNELS:
         status = await check(user_id=call.from_user.id, channel=channel)
         channel = await bot.get_chat(channel)
         if status:

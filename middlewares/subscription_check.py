@@ -2,7 +2,7 @@ from aiogram import types
 from aiogram.dispatcher.handler import CancelHandler
 from aiogram.dispatcher.middlewares import BaseMiddleware
 
-from data.config import CHANNEL
+from data.config import CHANNELS
 from utils.misc.subscription import check
 from loader import bot
 
@@ -17,7 +17,7 @@ class BigBrother(BaseMiddleware):
             return
         result = "Botdan foydalanish uchun quyidagi kanallarga obuna bo'ling:\n"
         final_status = True
-        for channel in CHANNEL:
+        for channel in CHANNELS:
             status = await check(user_id=user, channel=channel)
             final_status *= status
             if not status:
