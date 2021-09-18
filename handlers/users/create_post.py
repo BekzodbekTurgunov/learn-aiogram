@@ -13,7 +13,8 @@ from utils.notify_admins import on_startup_notify
 @dp.message_handler(commands='create_post')
 @dp.message_handler(Text('Post joylash'))
 async def create_post_handler(message: types.Message):
-    await message.answer("please write definition your product which you want to sold", reply_markup=ReplyKeyboardRemove())
+    await message.answer("please write definition your product which you want to sold",
+                         reply_markup=ReplyKeyboardRemove())
     await ConfirmationPost.newMessage.set()
 
 
@@ -50,8 +51,8 @@ async def post_channel(call: CallbackQuery):
     await call.answer("chop etishga ruhsat berdingiz", show_alert=True)
     message = await call.message.edit_reply_markup()
     # it is working when channel id giver correctly
-    # channel = 'channelID'
-    # await message.send_copy(chat_id=channel)
+    channel = '@Asl_yangi_ajoyib_videolar'  # channel_id
+    await message.send_copy(chat_id=channel)
 
 
 @dp.callback_query_handler(post_call_back.filter(action='cancel'), user_id=ADMINS)
