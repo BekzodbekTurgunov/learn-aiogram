@@ -11,7 +11,7 @@ async def on_startup(dispatcher):
     await set_default_commands(dispatcher)
 
     # Bot ishga tushgani haqida adminga xabar berish
-    await on_startup_notify(dispatcher)
+    await on_startup_notify(dispatcher, "Bot ishga tushdi")
 
 
 if __name__ == '__main__':
